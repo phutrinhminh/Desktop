@@ -1,0 +1,29 @@
+h3 {
+  text-align: center;
+  text-decoration: underline;
+  color: #dc5fc3;
+}
+.header {
+  background-color: #f2f2f2;
+  padding: 20px;
+  text-align: center;
+}
+.content {
+  margin: 29px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.content h3 {
+  margin: 29px;
+  padding: 20px;
+  background-color: #ffffff;
+}
+.content1 {
+  margin: 29px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,96 @@
+/* Reset CSS cơ bản */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7f6;
+  display: flex; /* Dùng flex để chia Layout Sidebar nằm ngang với Nội dung */
+  min-height: 100vh;
+}
+
+/* ==================================
+   THIẾT KẾ CHO SIDEBAR (Thanh bên)
+================================== */
+.sidebar {
+  width: 260px; /* Độ rộng cố định của sidebar */
+  background-color: #2c3e50; /* Màu nền xanh navy đậm */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar__logo {
+  padding: 2rem 1.5rem;
+  background-color: #1a252f; /* Màu nền đậm hơn để nổi bật logo */
+  text-align: center;
+  border-bottom: 1px solid #34495e;
+}
+
+.sidebar__logo h2 {
+  font-size: 1.8rem;
+  color: #3498db; /* Chữ logo màu xanh dương sáng */
+  margin-bottom: 0.3rem;
+}
+
+.sidebar__logo p {
+  font-size: 0.9rem;
+  color: #bdc3c7;
+}
+
+.sidebar__nav {
+  padding: 1.5rem 0;
+  flex: 1; /* Cho menu giãn ra hết khoảng trống còn lại */
+}
+
+/* Các nhóm menu con */
+.nav-section {
+  margin-bottom: 1.5rem;
+}
+
+.nav-section__title {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #7f8c8d; /* Màu chữ tiêu đề nhóm xám nhạt */
+  margin: 0 1.5rem 0.8rem 1.5rem;
+  letter-spacing: 1px;
+}
+
+.nav-list {
+  list-style: none;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.8rem 1.5rem;
+  color: #ecf0f1;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent; /* Viền trái tàng hình chờ hiệu ứng hover */
+}
+
+/* Hiệu ứng khi di chuột (hover) và mục đang chọn (active) */
+.nav-link:hover,
+.nav-link.active {
+  background-color: #34495e;
+  border-left-color: #3498db; /* Sáng viền xanh bên trái */
+  color: #fff;
+}
+
+/* ==================================
+   THIẾT KẾ KHU VỰC NỘI DUNG
+================================== */
+.main-content {
+  flex: 1; /* Chiếm toàn bộ phần không gian còn lại bên phải sidebar */
+  padding: 2rem;
+}
+
+.main-content h1 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}

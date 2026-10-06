@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wireframe - Dashboard Giáo Viên</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Sọc chéo giả lập vùng chứa biểu đồ (Wireframe style) */
+      .chart-placeholder {
+        background: repeating-linear-gradient(
+          45deg,
+          #f3f4f6,
+          #f3f4f6 10px,
+          #e5e7eb 10px,
+          #e5e7eb 20px
+        );
+      }
+    </style>
+  </head>
+  <body
+    class="bg-slate-50 flex h-screen overflow-hidden text-slate-800 font-sans"
+  >
+    <!-- SIDEBAR -->
+    <aside class="w-64 bg-white border-r border-slate-200 flex flex-col">
+      <div
+        class="h-16 flex items-center px-6 border-b border-slate-200 font-bold text-xl text-blue-600"
+      >
+        EduSystem LMS
+      </div>
+      <nav class="flex-1 p-4 space-y-2 text-sm font-medium">
+        <a href="#" class="block px-4 py-2 bg-blue-50 text-blue-700 rounded-lg"
+          >📊 Dashboard</a
+        >
+        <a
+          href="#"
+          class="block px-4 py-2 text-slate-600 hover:bg-slate-50 rounded-lg"
+          >🏫 Quản lý Lớp & Học sinh</a
+        >
+        <a
+          href="#"
+          class="block px-4 py-2 text-slate-600 hover:bg-slate-50 rounded-lg"
+          >📚 Kho đề thi</a
+        >
+        <a
+          href="#"
+          class="block px-4 py-2 text-slate-600 hover:bg-slate-50 rounded-lg"
+          >📝 Giao bài tập</a
+        >
+        <a
+          href="#"
+          class="block px-4 py-2 text-slate-600 hover:bg-slate-50 rounded-lg"
+          >📈 Phân tích chuyên sâu</a
+        >
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 flex flex-col h-screen overflow-y-auto">
+      <!-- HEADER -->
+      <header
+        class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8"
+      >
+        <div class="w-96">
+          <input
+            type="text"
+            placeholder="🔍 Tìm kiếm học sinh, bài tập..."
+            class="w-full bg-slate-100 border-none rounded-lg px-4 py-2 text-sm focus:ring-0"
+          />
+        </div>
+        <div class="flex items-center space-x-4">
+          <span class="text-xl">🔔</span>
+          <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 bg-blue-600 rounded-full"></div>
+            <span class="text-sm font-medium">GV. Nguyễn Văn A</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- DASHBOARD BODY -->
+      <div class="p-8 space-y-6">
+        <h1 class="text-2xl font-bold text-slate-800">
+          Tổng quan tình hình học tập - Lớp 10A1
+        </h1>
+
+        <!-- 4 KPI CARDS -->
+        <div class="grid grid-cols-4 gap-6">
+          <div
+            class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm"
+          >
+            <p class="text-sm text-slate-500 mb-1">Điểm Trung Bình</p>
+            <p class="text-2xl font-bold text-slate-800">
+              8.5 <span class="text-sm font-normal text-green-500">↑ 0.2</span>
+            </p>
+          </div>
+          <div
+            class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm"
+          >
+            <p class="text-sm text-slate-500 mb-1">Tỉ lệ hoàn thành bài</p>
+            <p class="text-2xl font-bold text-slate-800">
+              92% <span class="text-sm font-normal text-green-500">↑ 5%</span>
+            </p>
+          </div>
+          <div
+            class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm"
+          >
+            <p class="text-sm text-slate-500 mb-1">Thời gian TB / Bài</p>
+            <p class="text-2xl font-bold text-slate-800">24 Phút</p>
+          </div>
+          <div class="bg-red-50 p-6 rounded-xl border border-red-200 shadow-sm">
+            <p class="text-sm text-red-600 mb-1">⚠️ Dạng bài yếu nhiều nhất</p>
+            <p class="text-xl font-bold text-red-700">Hình học Không gian</p>
+          </div>
+        </div>
+
+        <!-- CHARTS SECTION -->
+        <div class="grid grid-cols-2 gap-6">
+          <div
+            class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm h-64 flex flex-col"
+          >
+            <h2 class="font-bold mb-4">
+              Biểu đồ Xu hướng Điểm số (Theo tháng)
+            </h2>
+            <div
+              class="chart-placeholder flex-1 rounded border border-slate-300 flex items-center justify-center text-slate-500"
+            >
+              [Khu vực chèn Biểu đồ Line Chart]
+            </div>
+          </div>
+          <div
+            class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm h-64 flex flex-col"
+          >
+            <h2 class="font-bold mb-4">
+              Phân tích Tỉ lệ Đúng/Sai theo dạng bài
+            </h2>
+            <div
+              class="chart-placeholder flex-1 rounded border border-slate-300 flex items-center justify-center text-slate-500"
+            >
+              [Khu vực chèn Biểu đồ Bar Chart]
+            </div>
+          </div>
+        </div>
+
+        <!-- TABLE SECTION -->
+        <div
+          class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden"
+        >
+          <div
+            class="px-6 py-4 border-b border-slate-200 flex justify-between items-center bg-slate-50"
+          >
+            <h2 class="font-bold text-slate-800">Danh sách bài tập gần đây</h2>
+            <button
+              class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700"
+            >
+              ➕ Tạo bài mới
+            </button>
+          </div>
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="border-b border-slate-200 text-sm text-slate-500">
+                <th class="px-6 py-3 font-medium">Tên Bài Tập</th>
+                <th class="px-6 py-3 font-medium">Hạn Nộp</th>
+                <th class="px-6 py-3 font-medium">Đã Nộp</th>
+                <th class="px-6 py-3 font-medium">Tỉ Lệ Đúng</th>
+                <th class="px-6 py-3 font-medium">Thao Tác</th>
+              </tr>
+            </thead>
+            <tbody class="text-sm">
+              <tr class="border-b border-slate-100 hover:bg-slate-50">
+                <td class="px-6 py-4 font-medium text-slate-800">
+                  Ôn tập Hình Học Chương 2
+                </td>
+                <td class="px-6 py-4">25/09/2026</td>
+                <td class="px-6 py-4">42/45</td>
+                <td class="px-6 py-4">
+                  <span class="bg-green-100 text-green-700 px-2 py-1 rounded"
+                    >78%</span
+                  >
+                </td>
+                <td class="px-6 py-4">
+                  <a href="#" class="text-blue-600 hover:underline"
+                    >Xem chi tiết</a
+                  >
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="px-6 py-4 font-medium text-slate-800">
+                  Kiểm tra Đại số 15 phút
+                </td>
+                <td class="px-6 py-4 text-red-500 font-medium">Hôm nay</td>
+                <td class="px-6 py-4">15/45</td>
+                <td class="px-6 py-4">
+                  <span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded"
+                    >85%</span
+                  >
+                </td>
+                <td class="px-6 py-4">
+                  <a href="#" class="text-blue-600 hover:underline"
+                    >Nhắc nhở HS</a
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
