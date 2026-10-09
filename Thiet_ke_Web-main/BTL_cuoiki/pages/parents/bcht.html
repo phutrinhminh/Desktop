@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Learnova - Báo cáo học tập</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="/Thiet_ke_Web-main/BTL_cuoiki/pages/teacher/css/sidebar.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/Thiet_ke_Web-main/BTL_cuoiki/pages/teacher/css/topbar.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/Thiet_ke_Web-main/BTL_cuoiki/pages/teacher/css/footer.css"
+    />
+
+    <style>
+      body {
+        background-color: #f9fafb;
+        font-family: "Inter", sans-serif;
+      }
+
+      .topbar-actions select {
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        padding: 6px 12px;
+        font-family: inherit;
+        font-size: 13px;
+        color: #4b5563;
+        background: white;
+        outline: none;
+      }
+      .btn-help {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        background: white;
+        font-size: 13px;
+        color: #4b5563;
+        cursor: pointer;
+      }
+
+      .content {
+        padding: 24px;
+      }
+
+      /* Thanh công cụ Báo cáo */
+      .report-toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .toolbar-left,
+      .toolbar-right {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .input-group label {
+        font-size: 11px;
+        font-weight: 500;
+        color: #6b7280;
+        text-transform: uppercase;
+      }
+      .input-group select {
+        padding: 8px 12px;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 500;
+        color: #111827;
+        background: white;
+        min-width: 200px;
+        outline: none;
+      }
+
+      /* Toggle Buttons (Tháng/Quý/Năm) */
+      .toggle-group {
+        display: flex;
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .toggle-btn {
+        padding: 8px 16px;
+        border: none;
+        background: transparent;
+        font-size: 13px;
+        font-weight: 500;
+        color: #6b7280;
+        cursor: pointer;
+        border-right: 1px solid #e5e7eb;
+      }
+      .toggle-btn:last-child {
+        border-right: none;
+      }
+      .toggle-btn.active {
+        background: #f3f4f6;
+        color: #111827;
+      }
+
+      .btn-pdf {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 16px;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        background: white;
+        font-size: 13px;
+        font-weight: 500;
+        color: #4b5563;
+        cursor: pointer;
+      }
+
+      /* Stats Cards */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+      .stat-card {
+        background: white;
+        padding: 16px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+      }
+      .stat-title {
+        font-size: 12px;
+        color: #6b7280;
+        margin-bottom: 8px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .stat-val {
+        font-size: 24px;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 4px;
+      }
+      .stat-desc {
+        font-size: 11px;
+        color: #9ca3af;
+      }
+      .text-green {
+        color: #10b981;
+      }
+
+      /* Middle Row: Biểu đồ & Nhận xét */
+      .middle-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+      .card-box {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 20px;
+      }
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .card-header h3 {
+        font-size: 14px;
+        font-weight: 600;
+        margin: 0;
+        color: #111827;
+      }
+
+      /* Chart CSS thuần */
+      .chart-container {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-around;
+        height: 120px;
+        padding-top: 20px;
+      }
+      .chart-bar-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+      }
+      .chart-bar {
+        width: 24px;
+        background-color: #f3f4f6;
+        border-radius: 4px 4px 0 0;
+      }
+      .chart-bar.active {
+        background-color: #111827;
+      }
+      .chart-label {
+        font-size: 11px;
+        color: #9ca3af;
+      }
+
+      /* Nhận xét giáo viên */
+      .teacher-comment {
+        font-size: 13px;
+        color: #4b5563;
+        line-height: 1.5;
+      }
+      .teacher-sign {
+        display: block;
+        margin-top: 12px;
+        font-size: 11px;
+        color: #9ca3af;
+      }
+
+      /* Table Section */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th {
+        text-align: left;
+        padding: 12px 16px;
+        font-size: 12px;
+        font-weight: 500;
+        color: #6b7280;
+        border-bottom: 1px solid #e5e7eb;
+        background: #f9fafb;
+      }
+      td {
+        padding: 16px;
+        font-size: 13px;
+        color: #4b5563;
+        border-bottom: 1px solid #f3f4f6;
+      }
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      .alert-box {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 16px;
+        padding: 12px 16px;
+        font-size: 12px;
+        color: #6b7280;
+        border-top: 1px dashed #e5e7eb;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar" aria-label="Thanh điều hướng chính">
+      <a class="brand" href="#">
+        <span class="brand-logo"
+          ><img
+            src="/Thiet_ke_Web-main/BTL_cuoiki/assets/image/Logo.png"
+            alt="Learnova"
+        /></span>
+        <span class="brand-text">
+          <strong>LEARNOVA</strong>
+          <small>EDUCATION SYSTEM</small>
+        </span>
+      </a>
+
+      <div
+        style="
+          padding: 0 24px;
+          margin-top: 20px;
+          margin-bottom: 8px;
+          font-size: 10px;
+          font-weight: 700;
+          color: #9ca3af;
+          text-transform: uppercase;
+        "
+      >
+        KHÔNG GIAN<br />
+        <span style="color: #4b5563; font-size: 13px">PHỤ HUYNH</span>
+      </div>
+
+      <nav class="nav">
+        <!-- Đổi href thành tên file của trang danh sách bài -->
+        <a class="nav-link" href="bcc.html">
+          <svg
+            class="icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect width="18" height="18" x="3" y="3" rx="2" />
+            <path d="M9 9h6" />
+            <path d="M9 13h6" />
+            <path d="M9 17h6" />
+          </svg>
+          <span>Bài của con</span>
+        </a>
+
+        <!-- Thêm class .is-active vào menu này -->
+        <a class="nav-link is-active" href="#" aria-current="page">
+          <svg
+            class="icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="18" y1="20" x2="18" y2="10" />
+            <line x1="12" y1="20" x2="12" y2="4" />
+            <line x1="6" y1="20" x2="6" y2="14" />
+          </svg>
+          <span>Báo cáo học tập</span>
+        </a>
+
+        <a class="nav-link" href="tb.html">
+          <svg
+            class="icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          </svg>
+          <span>Thông báo</span>
+        </a>
+
+        <a class="nav-link" href="tk.html">
+          <svg
+            class="icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <span>Tài khoản</span>
+        </a>
+      </nav>
+
+      <div class="user" style="margin-top: auto">
+        <div class="user-avatar" style="background: #e5e7eb; color: #374151">
+          <span>M</span>
+        </div>
+        <div class="user-info">
+          <strong>Nguyễn Đức Minh</strong>
+          <small>Phụ huynh</small>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ============ VÙNG BÊN PHẢI SIDEBAR ============ -->
+    <div class="main">
+      <!-- ================= TOPBAR ================= -->
+      <header class="topbar" style="background: white">
+        <div class="topbar-title">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <ol>
+              <li>
+                <span
+                  style="
+                    color: #9ca3af;
+                    font-size: 11px;
+                    text-transform: uppercase;
+                  "
+                  >Learnova / Phụ huynh / Màn hình 22</span
+                >
+              </li>
+            </ol>
+          </nav>
+          <h1>Báo cáo học tập</h1>
+        </div>
+
+        <div class="topbar-actions">
+          <select aria-label="Năm học">
+            <option>Năm học 2026-2027</option>
+          </select>
+          <button
+            type="button"
+            class="bell"
+            aria-label="Thông báo"
+            onclick="window.location.href = 'tb.html'"
+          >
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+            </svg>
+          </button>
+          <span class="topbar-divider"></span>
+          <button type="button" class="btn-help">
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              style="width: 16px; height: 16px"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            Trợ giúp
+          </button>
+        </div>
+      </header>
+
+      <!-- ============ NỘI DUNG TRANG ============ -->
+      <main class="content">
+        <!-- Thanh bộ lọc báo cáo -->
+        <div class="report-toolbar">
+          <div class="toolbar-left">
+            <div class="input-group">
+              <label>Học sinh</label>
+              <select>
+                <option>Nguyễn Minh Anh - 10A1</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label>Chu kỳ</label>
+              <select>
+                <option>Quý III/2026</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="toolbar-right">
+            <div class="toggle-group">
+              <button class="toggle-btn">Tháng</button>
+              <button class="toggle-btn active">Quý</button>
+              <button class="toggle-btn">Năm</button>
+            </div>
+            <button class="btn-pdf">
+              <svg
+                style="width: 16px"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Tải PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- Các thẻ thống kê -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-title">
+              Điểm trung bình
+              <svg
+                style="width: 14px; color: #d1d5db"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+              </svg>
+            </div>
+            <div class="stat-val">7,8</div>
+            <div class="stat-desc text-green">+0.6 so với quý II</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-title">
+              Tiến bộ
+              <svg
+                style="width: 14px; color: #d1d5db"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+                <polyline points="16 7 22 7 22 13" />
+              </svg>
+            </div>
+            <div class="stat-val text-green">+12%</div>
+            <div class="stat-desc">Xu hướng tích cực</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-title">
+              Hoàn thành
+              <svg
+                style="width: 14px; color: #d1d5db"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+            </div>
+            <div class="stat-val">86%</div>
+            <div class="stat-desc">19/21 bài</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-title">
+              Chủ đề yếu
+              <svg
+                style="width: 14px; color: #d1d5db"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+                />
+                <line x1="12" y1="9" x2="12" y2="13" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+            </div>
+            <div class="stat-val">Đạo hàm</div>
+            <div class="stat-desc">40% câu đúng</div>
+          </div>
+        </div>
+
+        <!-- Biểu đồ & Nhận xét -->
+        <div class="middle-grid">
+          <!-- Cột trái: Biểu đồ xu hướng điểm -->
+          <div class="card-box">
+            <div class="card-header">
+              <h3>Xu hướng điểm</h3>
+              <svg
+                style="width: 20px; color: #9ca3af; cursor: pointer"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="1" />
+                <circle cx="19" cy="12" r="1" />
+                <circle cx="5" cy="12" r="1" />
+              </svg>
+            </div>
+            <!-- Mô phỏng biểu đồ bằng CSS -->
+            <div class="chart-container">
+              <div class="chart-bar-wrap">
+                <div class="chart-bar" style="height: 40px"></div>
+                <span class="chart-label">T7</span>
+              </div>
+              <div class="chart-bar-wrap">
+                <div class="chart-bar" style="height: 60px"></div>
+                <span class="chart-label">T8</span>
+              </div>
+              <div class="chart-bar-wrap">
+                <div class="chart-bar" style="height: 45px"></div>
+                <span class="chart-label">T9</span>
+              </div>
+              <div class="chart-bar-wrap">
+                <div class="chart-bar" style="height: 75px"></div>
+                <span class="chart-label">T10</span>
+              </div>
+              <div class="chart-bar-wrap">
+                <div class="chart-bar" style="height: 65px"></div>
+                <span class="chart-label">T11</span>
+              </div>
+              <div class="chart-bar-wrap">
+                <div class="chart-bar active" style="height: 100px"></div>
+                <span class="chart-label">T12</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cột phải: Nhận xét -->
+          <div class="card-box">
+            <div class="card-header">
+              <h3>Nhận xét giáo viên</h3>
+              <svg
+                style="width: 20px; color: #9ca3af; cursor: pointer"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="1" />
+                <circle cx="19" cy="12" r="1" />
+                <circle cx="5" cy="12" r="1" />
+              </svg>
+            </div>
+            <div class="teacher-comment">
+              Minh Anh có tiến bộ rõ rệt ở chủ đề Hàm số. Cần duy trì thói quen
+              nộp bài đúng hạn và luyện thêm câu vận dụng Đạo hàm.
+              <span class="teacher-sign">Cô Nguyễn Thu Lan - 28/09/2026</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bảng danh sách Lịch sử điểm -->
+        <div class="card-box" style="padding: 0">
+          <div class="card-header" style="padding: 20px 20px 0 20px">
+            <h3>Lịch sử điểm</h3>
+            <svg
+              style="width: 20px; color: #9ca3af; cursor: pointer"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="1" />
+              <circle cx="19" cy="12" r="1" />
+              <circle cx="5" cy="12" r="1" />
+            </svg>
+          </div>
+
+          <div style="overflow-x: auto">
+            <table>
+              <thead>
+                <tr>
+                  <th>Bài</th>
+                  <th>Ngày</th>
+                  <th>Điểm</th>
+                  <th>Trung bình lớp</th>
+                  <th>Tiến bộ</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight: 500; color: #111827">
+                    Kiểm tra Hàm số
+                  </td>
+                  <td>12/09</td>
+                  <td style="font-weight: 600">8,5</td>
+                  <td>7,6</td>
+                  <td class="text-green">+0,9</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 500; color: #111827">
+                    Ôn tập chương I
+                  </td>
+                  <td>08/09</td>
+                  <td style="font-weight: 600">7,0</td>
+                  <td>7,2</td>
+                  <td style="color: #ef4444">-0,2</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 500; color: #111827">
+                    Khảo sát đầu năm
+                  </td>
+                  <td>25/08</td>
+                  <td style="font-weight: 600">6,5</td>
+                  <td>6,8</td>
+                  <td style="color: #ef4444">-0,3</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="alert-box">
+            <svg
+              style="width: 16px; color: #6b7280"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+              />
+              <line x1="12" y1="9" x2="12" y2="13" />
+              <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
+            <span
+              >Thiếu dữ liệu môn Vật lý.<br />Chưa có đủ 3 bài được công bố để
+              tạo xu hướng quý.</span
+            >
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
